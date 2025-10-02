@@ -1,11 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Card } from "./ui/card";
 import { Shield, User, Wallet } from "lucide-react";
 import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
 
-const WalletConnection = () => {
+type Props = {
+  setAdminLogin: Dispatch<SetStateAction<boolean>>;
+};
+const WalletConnection = ({ setAdminLogin }: Props) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [connectedUser, setConnectedUser] = useState(null);
   const handleConnect = async (isAdmin = false) => {
@@ -75,12 +77,12 @@ const WalletConnection = () => {
           </Button>
           <Button
             variant="outline"
-            onClick={() => handleConnect(true)}
+            onClick={() => setAdminLogin(true)}
             disabled={isConnecting}
             className="border-warning/30 text-warning hover:bg-warning/10"
           >
             <Shield className="h-4 w-4 mr-2" />
-            Connect as Admin
+            Login as Admin
           </Button>
         </div>
       </div>
