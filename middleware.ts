@@ -1,20 +1,22 @@
-import { auth } from "../auth";
+import { NextResponse } from "next/server";
+import { auth } from "./auth";
 
 export default auth((req) => {
   //get the current request url
-  // const headers = new Headers(req.headers);
-  // headers.set("x-current-path", req.nextUrl.pathname);
-  //redirect to home page if not authenticated
-  if (!req.auth && req.nextUrl.pathname !== "/") {
-    const newUrl = new URL("/", req.nextUrl.origin);
-    return Response.redirect(newUrl);
-  }
+  const headers = new Headers(req.headers);
+  headers.set("x-current-path", req.nextUrl.pathname);
+  // //redirect to home page if not authenticated
+  // if (!req.auth && req.nextUrl.pathname !== "/") {
+  //   const newUrl = new URL("/", req.nextUrl.origin);
+  //   return Response.redirect(newUrl);
+  // }
 
   //redirect to dashboard if authenticated
   if (req.auth && req.nextUrl.pathname === "/") {
     const newUrl = new URL("/dashboard", req.nextUrl.origin);
     return Response.redirect(newUrl);
   }
+  return NextResponse.next({ headers });
 });
 
 export const config = {

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
-import { Button } from "./components/ui/button";
 
 import "./globals.css";
-import { AlertTriangle, TrendingUp } from "lucide-react";
 import { headers } from "next/headers";
 import { Providers } from "./providers/providers";
 import { auth } from "../auth";
+import { Button } from "./components/ui/button";
+import Link from "next/link";
+import { AlertTriangle } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,59 +37,12 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-screen bg-background flex">
-          {/* Header */}
-          {/* <header className="border-b border-primary/20 bg-gradient-card shadow-card">
-            <div className="container mx-auto px-4 py-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div
-                    className="p-2 rounded-lg bg-gradient-primary"
-                    // style={{ background: "var(--gradient-primary)" }}
-                  >
-                    <TrendingUp className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h1 className="text-2xl font-bold">DSC Protocol</h1>
-                    <p className="text-sm text-muted-foreground">
-                      Decentralized Stablecoin Platform
-                    </p>
-                  </div>
-                </div>
-                <nav className="hidden md:flex items-center gap-2">
-                  <Button
-                    variant={pathname === "/" ? "default" : "ghost"}
-                    asChild
-                    size="sm"
-                  >
-                    <Link href="/">Home</Link>
-                  </Button>
-                  <Button
-                    variant={pathname === "/liquidations" ? "default" : "ghost"}
-                    asChild
-                    size="sm"
-                  >
-                    <Link href="/liquidations">
-                      <AlertTriangle className="h-4 w-4 mr-2" />
-                      Liquidations
-                      {/* {liquidatableVaults.length > 0 && (
-                      <span className="ml-2 px-1.5 py-0.5 text-xs bg-destructive text-destructive-foreground rounded-full">
-                        {liquidatableVaults.length}
-                      </span>
-                    )} */}
-          {/* </Link>
-                  </Button>
-                </nav>
-              </div>
-            </div>
-          </header> */}
-          {/* Main Content */}
-          <Providers session={session} cookie={cookie}>
-            <main className="container flex-1 flex mx-auto px-4 py-8">
-              {children}
-            </main>
-          </Providers>
-        </div>
+        {/* Header */}
+
+        {/* Main Content */}
+        <Providers session={session} cookie={cookie}>
+          {children}
+        </Providers>
       </body>
     </html>
   );

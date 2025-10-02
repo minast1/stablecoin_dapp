@@ -9,23 +9,27 @@ import AdminAuthView from "./components/admin-authview";
 export default function HomePage() {
   const [isAdminLogin, setIsAdminLogin] = useState(false);
   return (
-    <div className="flex w-full justify-center items-center">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-hero bg-clip-text text-transparent">
-            The Future of DeFi
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Create overcollateralized vaults, borrow DSC stablecoin, and
-            participate in a fully decentralized financial ecosystem.
-          </p>
+    <div className="min-h-screen bg-background flex">
+      <main className="container flex-1 flex mx-auto px-4 py-8">
+        <div className="flex w-full justify-center items-center">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-hero bg-clip-text text-transparent">
+                The Future of DeFi
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Create overcollateralized vaults, borrow DSC stablecoin, and
+                participate in a fully decentralized financial ecosystem.
+              </p>
+            </div>
+            {isAdminLogin ? (
+              <AdminAuthView setIsAdminLogin={setIsAdminLogin} />
+            ) : (
+              <UserAuthView setIsAdminLogin={setIsAdminLogin} />
+            )}
+          </div>
         </div>
-        {isAdminLogin ? (
-          <AdminAuthView setIsAdminLogin={setIsAdminLogin} />
-        ) : (
-          <UserAuthView setIsAdminLogin={setIsAdminLogin} />
-        )}
-      </div>
+      </main>
     </div>
   );
 }
