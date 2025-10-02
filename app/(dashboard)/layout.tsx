@@ -78,7 +78,7 @@ export default async function UserDashboardLayout({
       </header>
       {/* Main Content */}
       <Providers session={session} cookie={cookie}>
-        <div className="container flex-1 flex mx-auto px-4 py-8 border border-red-600">
+        <div className="container flex-1 flex mx-auto px-4 py-8">
           {children}
         </div>
       </Providers>
